@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Recognition with MobileNet</title>
+  <link rel="icon" type="image/png" href="/assets/artificial-intelligence_5054980.png">
+  <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <% if (message) { %>
+        <div class="popup">
+          <p><%= message %></p>
+        </div>
+    
+        <script>
+          // Show the pop-up notification when the page loads
+          document.addEventListener("DOMContentLoaded", () => {
+            const popup = document.querySelector(".popup");
+            popup.style.display = "block";
+    
+            // Hide the pop-up notification after a few seconds
+            setTimeout(() => {
+              popup.style.display = "none";
+            }, 5000); // Adjust the time (in milliseconds) as desired
+          });
+        </script>
+    <% } %>
+  <header>
+    <div class="header-content">
+      <h1>AI Image Recognition</h1>
+      <p>Unlock the Power of AI with MobileNet</p>
+    </div>
+  </header>
+  <div class="container">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" id="image" accept="image/*" required>
+      <button type="submit">Upload Image</button>
+    </form>
+
+    <% if (prediction !== null) { %>
+      <div class="result-container">
+        <h2>Image Prediction Result</h2>
+        <div class="result-box">
+          <p class="result-label">Predicted Object</p>
+          <p class="result-value"><%= prediction %></p>
+        </div>
+        <% if (imageBase64 !== null) { %>
+          <div class="result-image">
+            <img src="data:image/jpeg;base64, <%= imageBase64 %>" alt="Uploaded Image">
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
